@@ -38,7 +38,8 @@ open class ActionTestPerformanceMetricSummary : Codable {
         displayName = try container.decodeXCResultType(forKey: .displayName)
         unitOfMeasurement = try container.decodeXCResultType(forKey: .unitOfMeasurement)
 
-        measurements = try container.decodeXCResultArray(forKey: .measurements)
+        let values: [XCResultValueType] = try container.decodeXCResultArray(forKey: .measurements)
+        measurements = values.compactMap { $0.getValue() as? Double }
 
         identifier = try container.decodeXCResultTypeIfPresent(forKey: .identifier)
         baselineName = try container.decodeXCResultTypeIfPresent(forKey: .baselineName)
