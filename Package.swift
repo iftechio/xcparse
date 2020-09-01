@@ -25,10 +25,10 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "xcparse",
-            dependencies: [ "XCParseCore", "SPMUtility" ]),
+            dependencies: [ "XCParseCore", "SwiftPM" ]),
         .target(
             name: "XCParseCore",
-            dependencies: [ "SPMUtility" ]),
+            dependencies: [ "SwiftPM" ]),
         .testTarget(
             name: "xcparseTests",
             dependencies: ["xcparse"]),
