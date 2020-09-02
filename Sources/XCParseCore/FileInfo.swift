@@ -8,7 +8,6 @@
  See http://swift.org/CONTRIBUTORS.txt for Swift project authors
  */
 
-import SPMLibc
 import Foundation
 
 /// File system information for a particular file.
@@ -58,7 +57,7 @@ public struct FileInfo: Equatable, Codable {
         return Kind(mode: mode_t(mode) & S_IFMT)
     }
 
-    public init(_ buf: SPMLibc.stat) {
+    public init(_ buf: stat) {
         self.device = UInt64(buf.st_dev)
         self.inode = UInt64(buf.st_ino)
         self.mode = UInt64(buf.st_mode)

@@ -163,9 +163,7 @@ public enum SystemError: Swift.Error {
     case waitpid(Int32)
 }
 
-import func SPMLibc.strerror_r
-import var SPMLibc.EINVAL
-import var SPMLibc.ERANGE
+import Darwin.C
 
 extension SystemError: CustomStringConvertible {
     public var description: String {
@@ -173,7 +171,7 @@ extension SystemError: CustomStringConvertible {
             var cap = 64
             while cap <= 16 * 1024 {
                 var buf = [Int8](repeating: 0, count: cap)
-                let err = SPMLibc.strerror_r(errno, &buf, buf.count)
+                let err = strerror_r(errno, &buf, buf.count)
                 if err == EINVAL {
                     return "Unknown error \(errno)"
                 }

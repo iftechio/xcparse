@@ -8,8 +8,6 @@
  See http://swift.org/CONTRIBUTORS.txt for Swift project authors
 */
 
-import Basic
-
 /// A struct representing a semver version.
 public struct Version: Hashable {
 

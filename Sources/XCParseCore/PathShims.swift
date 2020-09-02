@@ -17,7 +17,6 @@
  while making it fairly easy to find those calls later.
 */
 
-import SPMLibc
 import Foundation
 
 /// Returns the "real path" corresponding to `path` by resolving any symbolic links.
@@ -26,7 +25,7 @@ public func resolveSymlinks(_ path: AbsolutePath) -> AbsolutePath {
 
     // FIXME: We can't use FileManager's destinationOfSymbolicLink because
     // that implements readlink and not realpath.
-    if let resultPtr = SPMLibc.realpath(pathStr, nil) {
+    if let resultPtr = realpath(pathStr, nil) {
         let result = String(cString: resultPtr)
         // FIXME: We should measure if it's really more efficient to compare the strings first.
         return result == pathStr ? path : AbsolutePath(result)
@@ -45,7 +44,7 @@ public func makeDirectories(_ path: AbsolutePath) throws {
 /// be a relative path, otherwise it will be absolute.
 public func createSymlink(_ path: AbsolutePath, pointingAt dest: AbsolutePath, relative: Bool = true) throws {
     let destString = relative ? dest.relative(to: path.parentDirectory).pathString : dest.pathString
-    let rv = SPMLibc.symlink(destString, path.pathString)
+    let rv = symlink(destString, path.pathString)
     guard rv == 0 else { throw SystemError.symlink(errno, path.pathString, dest: destString) }
 }
 
