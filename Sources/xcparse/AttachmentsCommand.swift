@@ -6,9 +6,7 @@
 //  Copyright © 2019 ChargePoint, Inc. All rights reserved.
 //
 
-import Basic
 import Foundation
-import SPMUtility
 
 struct AttachmentsCommand: Command {
     let command = "attachments"

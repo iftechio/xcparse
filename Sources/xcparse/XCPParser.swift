@@ -6,9 +6,7 @@
 //  Copyright © 2019 ChargePoint, Inc. All rights reserved.
 //
 
-import Basic
 import Foundation
-import SPMUtility
 import XCParseCore
 
 let xcparseCurrentVersion = Version(2, 1, 0)

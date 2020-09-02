@@ -6,14 +6,12 @@
 //  Copyright © 2019 ChargePoint, Inc. All rights reserved.
 //
 
-import Basic
 import Foundation
-import SPMUtility
 
 let xcresultToolArguments = ["xcrun", "xcresulttool"]
 
 open class XCResultToolCommand {
-    let process: Basic.Process
+    let process: Process
 
     let xcresult: XCResult
     var console: Console {
@@ -22,12 +20,12 @@ open class XCResultToolCommand {
         }
     }
 
-    public init(withXCResult xcresult: XCResult, process: Basic.Process = Basic.Process(arguments: ["xcrun", "xcresulttool", "-h"])) {
+    public init(withXCResult xcresult: XCResult, process: Process = Process(arguments: ["xcrun", "xcresulttool", "-h"])) {
         self.xcresult = xcresult
         self.process = process
     }
     
-    @discardableResult public func run() -> Basic.ProcessResult? {
+    @discardableResult public func run() -> ProcessResult? {
         do {
             self.console.writeMessage("Command: \(process.arguments.joined(separator: " "))\n", to: .verbose)
 
@@ -76,7 +74,7 @@ open class XCResultToolCommand {
                                             "--id", self.id,
                                             "--output-path", self.outputPath])
 
-            let process = Basic.Process(arguments: processArgs)
+            let process = Process(arguments: processArgs)
             super.init(withXCResult: xcresult, process: process)
         }
 
@@ -97,7 +95,7 @@ open class XCResultToolCommand {
                                             "--id", self.id,
                                             "--output-path", self.outputPath])
 
-            let process = Basic.Process(arguments: processArgs)
+            let process = Process(arguments: processArgs)
             super.init(withXCResult: xcresult, process: process)
         }
     }
@@ -128,7 +126,7 @@ open class XCResultToolCommand {
                 processArgs.append(contentsOf: ["--output-path", self.outputPath])
             }
 
-            let process = Basic.Process(arguments: processArgs)
+            let process = Process(arguments: processArgs)
             super.init(withXCResult: xcresult, process: process)
         }
     }
@@ -151,7 +149,7 @@ open class XCResultToolCommand {
                 processArgs.append(contentsOf: ["--version", "\(version)"])
             }
 
-            let process = Basic.Process(arguments: processArgs)
+            let process = Process(arguments: processArgs)
             super.init(withXCResult: xcresult, process: process)
         }
     }
@@ -163,7 +161,7 @@ open class XCResultToolCommand {
             processArgs.append(contentsOf: ["metadata", "get",
                                             "--path", xcresult.path])
 
-            let process = Basic.Process(arguments: processArgs)
+            let process = Process(arguments: processArgs)
             super.init(withXCResult: xcresult, process: process)
         }
     }
@@ -175,7 +173,7 @@ open class XCResultToolCommand {
             processArgs.append(contentsOf: ["version"])
 
             let xcresult = XCResult(path: "")
-            let process = Basic.Process(arguments: processArgs)
+            let process = Process(arguments: processArgs)
             super.init(withXCResult: xcresult, process: process)
         }
     }

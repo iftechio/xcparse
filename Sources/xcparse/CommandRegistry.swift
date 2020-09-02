@@ -6,9 +6,7 @@
 //  Copyright © 2019 ChargePoint, Inc. All rights reserved.
 //
 
-import Basic
 import Foundation
-import SPMUtility
 
 // This is cribbed form a great blog post on ArgumentParser
 // https://www.enekoalonso.com/articles/handling-commands-with-swift-package-manager
